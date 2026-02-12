@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>С 14 Февраля!</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@300;600&display=swap');
+
+        * { box-sizing: border-box; }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 30px;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            width: 90%;
+            max-width: 400px;
+            animation: appear 1.2s ease-out;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #d63384;
+            font-size: 2.5rem;
+            margin: 0 0 15px 0;
+            line-height: 1.2;
+        }
+
+        p {
+            color: #7d2d4d;
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            user-select: none;
+            animation: floatUp linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(110vh) rotate(0deg) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-20vh) rotate(360deg) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes appear {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Декор */
+        .decoration {
+            font-size: 3rem;
+            margin-top: 20px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card">
+        <h1 id="user-name">С праздником!</h1>
+        <p id="message">Загружаем поздравление...</p>
+        <span class="decoration">🎁</span>
+    </div>
+
+    <script>
+        // --- НАСТРОЙКИ ---
+        // Сюда вставь URL из Google Apps Script (который получил при развертывании)
+        const DATABASE_URL = "ТВОЯ_ССЫЛКА_ТУТ"; 
+
+        const tg = window.Telegram.WebApp;
+        const nameElement = document.getElementById('user-name');
+        const messageElement = document.getElementById('message');
+
+        function initApp() {
+            tg.ready();
+            tg.expand();
+
+            let firstName = "";
+            let lastName = "";
+            let username = "";
+
+            if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+                const user = tg.initDataUnsafe.user;
+                firstName = user.first_name || "";
+                lastName = user.last_name || "";
+                username = user.username || "no_user";
+            } 
+            else {
+                const params = new URLSearchParams(window.location.search);
+                firstName = params.get('name') || "Красотка";
+            }
+            const displayName = lastName ? lastName : firstName;
+            nameElement.innerText = `С праздником, ${displayName}!`;
+            messageElement.innerText = "Пусть этот день будет полон любви, нежности и самых приятных сюрпризов! ✨";
+
+            // 3. Отправка в "Базу данных" (Google Таблицу)
+            if (DATABASE_URL !== "ТВОЯ_ССЫЛКА_ТУТ") {
+                fetch(DATABASE_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', 
+                    body: JSON.stringify({
+                        first_name: firstName,
+                        last_name: lastName,
+                        username: username,
+                        date: new Date().toLocaleString()
+                    })
+                }).catch(err => console.log("Ошибка БД:", err));
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            const types = ['❤️', '💖', '💕', '💗', '🌸'];
+            heart.innerText = types[Math.floor(Math.random() * types.length)];
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            
+            const duration = Math.random() * 4 + 4;
+            heart.style.animationDuration = duration + 's';
+            
+            heart.style.opacity = Math.random() * 0.7 + 0.3;
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        setInterval(createHeart, 400);
+        window.onload = initApp;
+    </script>
+</body>
+</html>
