@@ -61,6 +61,21 @@
             animation: floatUp linear forwards;
         }
 
+                .footer {
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .footer a {
+            color: #aaa; /* Сделал цвет серым (не синим!) */
+            text-decoration: none; /* Убрал подчеркивание */
+            transition: color 0.3s; /* Плавное изменение цвета при нажатии */
+        }
+
+        .footer a:active {
+            color: #666; /* Темнеет при клике */
+        }
+
         @keyframes floatUp {
             0% {
                 transform: translateY(110vh) rotate(0deg) scale(0.5);
@@ -91,7 +106,7 @@
         <span class="decoration">🎁</span>
 
         <div class="footer">
-            <a href="https://t.me/Romero_Boss2007">лох</a>
+            Контакт: <a href="https://t.me/Romero_Boss2007">лох</a>
         </div>
     </div>
 
@@ -145,6 +160,7 @@
 </body>
 
 </html>
+
 
 
 
