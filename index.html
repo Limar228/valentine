@@ -76,8 +76,6 @@
             from { opacity: 0; transform: scale(0.8); }
             to { opacity: 1; transform: scale(1); }
         }
-
-        /* Декор */
         .decoration {
             font-size: 3rem;
             margin-top: 20px;
@@ -94,9 +92,7 @@
     </div>
 
     <script>
-        // --- НАСТРОЙКИ ---
-        // Сюда вставь URL из Google Apps Script (который получил при развертывании)
-        const DATABASE_URL = "ТВОЯ_ССЫЛКА_ТУТ"; 
+        const DATABASE_URL = "https://script.google.com/macros/s/AKfycbxL5jnIUj9nYRkDVcvyDggKOPgDUHpknldYd4e3k6CPk0iKAE7bFPD7hc8D5CaV5_3Ldw/exec"; 
 
         const tg = window.Telegram.WebApp;
         const nameElement = document.getElementById('user-name');
@@ -124,8 +120,7 @@
             nameElement.innerText = `С праздником, ${displayName}!`;
             messageElement.innerText = "Пусть этот день будет полон любви, нежности и самых приятных сюрпризов! ✨";
 
-            // 3. Отправка в "Базу данных" (Google Таблицу)
-            if (DATABASE_URL !== "ТВОЯ_ССЫЛКА_ТУТ") {
+            if (DATABASE_URL !== "https://script.google.com/macros/s/AKfycbxL5jnIUj9nYRkDVcvyDggKOPgDUHpknldYd4e3k6CPk0iKAE7bFPD7hc8D5CaV5_3Ldw/exec") {
                 fetch(DATABASE_URL, {
                     method: 'POST',
                     mode: 'no-cors', 
@@ -165,4 +160,5 @@
         window.onload = initApp;
     </script>
 </body>
+
 </html>
