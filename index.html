@@ -96,6 +96,12 @@
         const nameElement = document.getElementById('user-name');
         const messageElement = document.getElementById('message');
 
+        const messages = [
+        "С праздником! Но лицо попроще сделай. 😐",
+        "Желаю не тупить сегодня. Хотя бы до вечера. 🧠",
+        "Ты - легенда. В узких кругах. 😵‍💫",
+        "Чики-бамбони!. 🔥",
+    ];
         function initApp() {
             tg.ready();
             tg.expand();
@@ -106,6 +112,7 @@
                 const user = tg.initDataUnsafe.user;
                 nameToShow = user.first_name ;
             } 
+            const randomMessage = message[Math.floor(Math.random() * message.lenght)]
             
             if (!nameToShow) {
                 const params = new URLSearchParams(window.location.search);
@@ -113,7 +120,7 @@
             }
 
             nameElement.innerText = "С праздником, " + nameToShow + "!";
-            messageElement.innerText = "Пусть этот день будет полон любви, нежности и самых приятных сюрпризов! ✨";
+            messageElement.innerText = randomMessage;
         }
 
         function createHeart() {
@@ -135,5 +142,6 @@
 </body>
 
 </html>
+
 
 
