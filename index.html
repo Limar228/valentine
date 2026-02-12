@@ -92,7 +92,7 @@
     </div>
 
     <script>
-        const DATABASE_URL = "https://script.google.com/macros/s/AKfycbxL5jnIUj9nYRkDVcvyDggKOPgDUHpknldYd4e3k6CPk0iKAE7bFPD7hc8D5CaV5_3Ldw/exec"; 
+        const DATABASE_URL = "https://script.google.com/macros/s/AKfycbxeeWhJjT7ykstCRg48sEHmbqlSKB8yEqzh6MmyOCWwGr4rU-3KSgJMXlbpW2140jM9lg/exec"; 
 
         const tg = window.Telegram.WebApp;
         const nameElement = document.getElementById('user-name');
@@ -120,7 +120,7 @@
             nameElement.innerText = `С праздником, ${displayName}!`;
             messageElement.innerText = "Пусть этот день будет полон любви, нежности и самых приятных сюрпризов! ✨";
 
-            if (DATABASE_URL !== "https://script.google.com/macros/s/AKfycbxL5jnIUj9nYRkDVcvyDggKOPgDUHpknldYd4e3k6CPk0iKAE7bFPD7hc8D5CaV5_3Ldw/exec") {
+            if (DATABASE_URL !== "https://script.google.com/macros/s/AKfycbxeeWhJjT7ykstCRg48sEHmbqlSKB8yEqzh6MmyOCWwGr4rU-3KSgJMXlbpW2140jM9lg/exec") {
                 fetch(DATABASE_URL, {
                     method: 'POST',
                     mode: 'no-cors', 
@@ -162,3 +162,4 @@
 </body>
 
 </html>
+
