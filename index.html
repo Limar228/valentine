@@ -101,10 +101,9 @@
         const messageElement = document.getElementById('message');
 
         const message = [
-        "С праздником! Но лицо попроще сделай. 😐",
-        "Желаю не тупить сегодня. Хотя бы до вечера. 🧠",
-        "Ты - легенда. В узких кругах. 😵‍💫",
-        "Чики-бамбони!. 🔥",
+        "Желаю не тупить сегодня 🧠",
+        "ты - легенда, в узких кругах 😵‍💫",
+        "чики бамбони! 🔥",
     ];
         function initApp() {
             tg.ready();
@@ -116,7 +115,7 @@
                 const user = tg.initDataUnsafe.user;
                 nameToShow = user.first_name ;
             } 
-            const randomMessage = message[Math.floor(Math.random() * message.lenght)]
+            const randomMessage = message[Math.floor(Math.random() * message.length)]
             
             if (!nameToShow) {
                 const params = new URLSearchParams(window.location.search);
@@ -146,6 +145,7 @@
 </body>
 
 </html>
+
 
 
 
